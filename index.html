@@ -121,15 +121,15 @@
 
   <div class="overlay"></div>
 
-  <audio id="valentineSong" autoplay loop>
+  <audio id="valentineSong" loop>
     <source src="Love Me.mp3" type="audio/mp3">
   </audio>
 
   <div class="card">
     <h1><b><span style="color: #ff4d6d;">RETHABILE</span>🥺</h1>
     <p>
-      I’ve been thinking and…<br><br>
-      You + Me + Valentine’s Day =🎁🍫🍭<br><br>
+      I've been thinking and…<br><br>
+      You + Me + Valentine's Day =🎁🍫🍭<br><br>
       So, <span style="color: #ff4d6d;">RETHABILE<b/></span>…
     </p>
 
@@ -165,6 +165,10 @@
     }
 
     function sayYes() {
+      // Play the audio when YES is clicked
+      const song = document.getElementById("valentineSong");
+      song.play();
+      
       document.body.innerHTML = `
         <video autoplay loop muted playsinline style="
           position:fixed;
@@ -197,6 +201,3 @@
 
 </body>
 </html>
-
-
-
