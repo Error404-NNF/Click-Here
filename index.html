@@ -141,7 +141,7 @@
     </div>
   </div>
 
-  <script>
+ <script>
     // FLOATING HEARTS GENERATOR
     function createHeart() {
       const heart = document.createElement('div');
@@ -157,42 +157,51 @@
 
     function moveNo() {
       const noBtn = document.getElementById("noBtn");
-      const maxX = 200; // Adjusted for better mobile containment
-      const maxY = 80;
+      // Keeps the button within the card area
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.position = 'fixed'; // Make it fly anywhere on screen
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
 
-      noBtn.style.left = Math.random() * maxX + "px";
-      noBtn.style.top = Math.random() * maxY + "px";
+    // NEW CREATIVE FIREWORKS (Emoji Burst)
+    function createFirework() {
+      const emojis = ['🎆', '✨', '🎈', '🎊', '❤️'];
+      const fw = document.createElement('div');
+      fw.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      fw.style.position = 'fixed';
+      fw.style.left = Math.random() * 100 + 'vw';
+      fw.style.top = '100vh';
+      fw.style.fontSize = '30px';
+      fw.style.zIndex = '100';
+      fw.style.transition = 'all 2s ease-out';
+      document.body.appendChild(fw);
+
+      // Animate up and fade out
+      setTimeout(() => {
+        fw.style.transform = `translateY(-${Math.random() * 80 + 20}vh) scale(${Math.random() * 3 + 1})`;
+        fw.style.opacity = '0';
+      }, 50);
+
+      setTimeout(() => fw.remove(), 2000);
     }
 
     function sayYes() {
+      // Start the "fireworks"
+      setInterval(createFirework, 150);
+
       document.body.innerHTML = `
-        <video autoplay loop muted playsinline style="
-          position:fixed;
-          top:0;
-          left:0;
-          width:100%;
-          height:100%;
-          object-fit:cover;
-          z-index:-1;">
+        <video autoplay loop muted playsinline style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;">
           <source src="VID_20250602_072710_581.mp4" type="video/mp4">
         </video>
 
-        <div style="
-          height:100vh;
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          justify-content:center;
-          background:rgba(0,0,0,0.5);
-          backdrop-filter: blur(5px);
-          font-family:Arial;
-          text-align:center;
-          color:white;
-          padding: 20px;
-        ">
-          <h1 style="color:#ff4d6d;">NAZO😘👌</h1>
-          <p style="font-size:22px;">
-            Valentine secured,I love you lil mama, Frostana thata sarn, hope we grow together,stronger and love each other better as time goes (Legona its not like onale choice, nkaotshella korobela shem) But genuinely I love you Nana💘🌹
+        <div style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); backdrop-filter: blur(8px); font-family:Arial; text-align:center; color:white; padding: 20px;">
+          <h1 style="color:#ff4d6d; font-size: 40px;">NAZO😘👌</h1>
+          <p style="font-size:22px; max-width: 500px; line-height: 1.5;">
+            Valentine secured, I love you lil mama, Frostana thata sarn, hope we grow together, stronger and love each other better as time goes <br><br>
+            <span style="font-size: 16px; opacity: 0.8;">(Legona its not like onale choice, nkaotshella korobela shem)</span> <br><br>
+            <b>But genuinely I love you Nana💘🌹</b>
           </p>
         </div>
 
@@ -200,13 +209,16 @@
           <source src="Love Me.mp3" type="audio/mp3">
         </audio>
       `;
-      // Keep hearts flowing on success screen
+      
+      // Keep hearts and fireworks going on the new screen
       setInterval(createHeart, 300);
+      setInterval(createFirework, 200);
     }
   </script>
 
 </body>
 </html>
+
 
 
 
